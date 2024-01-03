@@ -22,13 +22,39 @@ game.TitleScreen = me.ScreenObject.extend({
             }
         });
 
-        //logo
+        //logo (spritesheet)
         this.logo = new me.Sprite(
             me.game.viewport.width/2,
             me.game.viewport.height/2 - 20,
-            {image: 'logo'}
+            {
+                image: me.loader.getImage('logoSpriteSheet'),
+                framewidth: 800,
+                frameheight: 450
+            }
         );
-        me.game.world.addChild(this.logo, 10);
+
+        //define the animation
+        var frameSequence = [];
+        for (let i = 0; i < 100; i++) { // total of 100 frames
+            frameSequence.push(i);
+        }
+        logo.addAnimation("animateLogo", frameSequence, 2); // 2ms between frames
+        logo.setCurrentAnimation("animateLogo", () => {
+            // Code to execute after animation ends, if not looping
+        });
+        ////logo.setCurrentAnimation("animateLogo"); // if looping
+
+        //add
+        me.game.world.addChild(this.logoSpriteSheet, 10);
+        ////me.game.world.addChild(this.logoSpriteSheet);
+
+        //logo
+        //this.logo = new me.Sprite(
+        //    me.game.viewport.width/2,
+        //    me.game.viewport.height/2 - 20,
+        //    {image: 'logo'}
+        //);
+        ////me.game.world.addChild(this.logo, 10);
 
         var that = this;
         var logoTween = me.pool.pull("me.Tween", this.logo.pos)
@@ -47,7 +73,7 @@ game.TitleScreen = me.ScreenObject.extend({
                 // size does not matter, it's just to avoid having a zero size
                 // renderable
                 this._super(me.Renderable, 'init', [0, 0, 100, 100]);
-                this.text = me.device.touch ? 'Tap to start' : 'CLICK / PRESS SPACE TO START \n\t\t\t\t\t\t\t\t\t\t\tPRESS "M" TO MUTE SOUND';
+                this.text = me.device.touch ? 'Tap to start' : 'TAP / SPACE TO START \n\t\t\t\t\t\t\t\t\t\t\t"M" TO MUTE SOUND';
                 this.font = new me.Font('gamefont', 20, '#000');
             },
             draw: function (renderer) {

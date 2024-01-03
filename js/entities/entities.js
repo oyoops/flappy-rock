@@ -116,7 +116,6 @@ game.BirdEntity = me.Entity.extend({
 
 });
 
-
 game.PipeEntity = me.Entity.extend({
     init: function(x, y) {
         var settings = {};
