@@ -1,7 +1,7 @@
-Clumsy Bird
+Flappy Rock
 ===========
 
-A MelonJS made "Flappy Bird" clone.
+RWH
 
 ![](http://i.imgur.com/Slbvt65.png)
 
