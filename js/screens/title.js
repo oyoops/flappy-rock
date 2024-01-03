@@ -27,7 +27,7 @@ game.TitleScreen = me.ScreenObject.extend({
             me.game.viewport.width/2,
             me.game.viewport.height/2 - 20,
             {
-                image: me.loader.getImage('logoSpriteSheet'),
+                image: me.loader.getImage('logo'),
                 framewidth: 800,
                 frameheight: 450
             }
