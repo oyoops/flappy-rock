@@ -1,8 +1,8 @@
 {
-  "name": "Clumsy Bird",
-  "description": "MelonJS Flapppy Bird Clone",
-  "repository": "https://github.com/ellisonleao/clumsy-bird",
-  "logo": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/gh-pages/data/img/touch-icon-iphone.png",
-  "keywords": ["grunt", "melonjs", "games"]
+  "name": "Flappy Rock",
+  "description": "The official Flappy RockWifHat community game",
+  "repository": "https://github.com/oyoops/flappy-rock",
+  "logo": "https://raw.githubusercontent.com/oyoops/flappy-rock/gh-pages/data/img/touch-icon-iphone.png",
+  "keywords": ["rockwifhat", "grunt", "melonjs", "games"]
 }
 
