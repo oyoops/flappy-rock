@@ -18,9 +18,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'build/clumsy-min.js': [
-                        sourceFiles
-                    ]
+                    'build/clumsy-min.js': sourceFiles
                 }
             }
         },
