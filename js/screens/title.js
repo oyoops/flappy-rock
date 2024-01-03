@@ -22,39 +22,13 @@ game.TitleScreen = me.ScreenObject.extend({
             }
         });
 
-        //logo (spritesheet)
+        logo
         this.logo = new me.Sprite(
             me.game.viewport.width/2,
             me.game.viewport.height/2 - 20,
-            {
-                image: me.loader.getImage('logo'),
-                framewidth: 351, // 800
-                frameheight: 197 // 450
-            }
+            {image: 'logo'}
         );
-
-        //define the animation
-        var frameSequence = [];
-        for (let i = 0; i < 100; i++) { // total of 100 frames
-            frameSequence.push(i);
-        }
-        logo.addAnimation("animateLogo", frameSequence, 10); // 10ms between frames
-        logo.setCurrentAnimation("animateLogo", () => {
-            // Code to execute after animation ends, if not looping
-        });
-        ////logo.setCurrentAnimation("animateLogo"); // if looping
-
-        //add
-        me.game.world.addChild(this.logo);
-        ////me.game.world.addChild(this.logoSpriteSheet);
-
-        //logo
-        //this.logo = new me.Sprite(
-        //    me.game.viewport.width/2,
-        //    me.game.viewport.height/2 - 20,
-        //    {image: 'logo'}
-        //);
-        ////me.game.world.addChild(this.logo, 10);
+        me.game.world.addChild(this.logo, 10);
 
         var that = this;
         var logoTween = me.pool.pull("me.Tween", this.logo.pos)
