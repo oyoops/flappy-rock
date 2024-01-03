@@ -8,7 +8,7 @@ var game = {
     },
 
     resources: [
-            // images
+        // images
         {name: "bg", type:"image", src: "data/img/bg.png"},
         {name: "clumsy", type:"image", src: "data/img/clumsy.png"},
         {name: "pipe", type:"image", src: "data/img/pipe.png"},
@@ -28,7 +28,7 @@ var game = {
         {name: "lose", type: "audio", src: "data/sfx/"},
         {name: "wing", type: "audio", src: "data/sfx/"},
     ],
-    
+
     "onload": function() {
         if (!me.video.init(900, 600, {
             wrapper: "screen",

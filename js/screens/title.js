@@ -45,7 +45,7 @@ game.TitleScreen = me.ScreenObject.extend({
         ////logo.setCurrentAnimation("animateLogo"); // if looping
 
         //add
-        me.game.world.addChild(this.logoSpriteSheet, 10);
+        me.game.world.addChild(this.logo, 10);
         ////me.game.world.addChild(this.logoSpriteSheet);
 
         //logo
