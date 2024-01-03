@@ -28,8 +28,8 @@ game.TitleScreen = me.ScreenObject.extend({
             me.game.viewport.height/2 - 20,
             {
                 image: me.loader.getImage('logo'),
-                framewidth: 800,
-                frameheight: 450
+                framewidth: 351, // 800
+                frameheight: 197 // 450
             }
         );
 
@@ -38,14 +38,14 @@ game.TitleScreen = me.ScreenObject.extend({
         for (let i = 0; i < 100; i++) { // total of 100 frames
             frameSequence.push(i);
         }
-        logo.addAnimation("animateLogo", frameSequence, 2); // 2ms between frames
+        logo.addAnimation("animateLogo", frameSequence, 10); // 10ms between frames
         logo.setCurrentAnimation("animateLogo", () => {
             // Code to execute after animation ends, if not looping
         });
         ////logo.setCurrentAnimation("animateLogo"); // if looping
 
         //add
-        me.game.world.addChild(this.logo, 10);
+        me.game.world.addChild(this.logo);
         ////me.game.world.addChild(this.logoSpriteSheet);
 
         //logo
