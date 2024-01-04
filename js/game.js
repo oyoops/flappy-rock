@@ -86,6 +86,12 @@ var game = {
 
 game.ScaledBackgroundLayer = me.ImageLayer.extend({
     init: function(image, z) {
+        var img = me.loader.getImage(image);
+        if (!img) {
+            console.error("Image for ScaledBackgroundLayer not found: " + image);
+            return;
+        }
+    
         var width = me.video.renderer.getWidth();
         var height = me.video.renderer.getHeight();
         // Call the parent constructor

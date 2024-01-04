@@ -86,6 +86,12 @@ var game = {
 
 game.ScaledBackgroundLayer = me.ImageLayer.extend({
     init: function(image, z) {
+        var img = me.loader.getImage(image);
+        if (!img) {
+            console.error("Image for ScaledBackgroundLayer not found: " + image);
+            return;
+        }
+    
         var width = me.video.renderer.getWidth();
         var height = me.video.renderer.getHeight();
         // Call the parent constructor
@@ -592,9 +598,10 @@ function updateCharacterSprite(imageName) {
         game.data.start = false;
         game.data.newHiscore = false;
 
-        me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
+        ////////me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
         ////me.game.world.addChild(new BackgroundLayer('bg', 1));
         ////this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
         me.game.world.addChild(this.bgLayer);
 
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
