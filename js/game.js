@@ -28,6 +28,8 @@ var game = {
         {name: "walletButton", type:"image", src: "data/img/walletButton.png"},
         {name: "share", type:"image", src: "data/img/share.png"},
         {name: "tweet", type:"image", src: "data/img/tweet.png"},
+        {name: "fb", type:"image", src: "data/img/share.png"},
+        
         // sounds
         {name: "theme", type: "audio", src: "data/bgm/"},
         {name: "hit", type: "audio", src: "data/sfx/"},
