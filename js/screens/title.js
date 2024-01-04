@@ -12,6 +12,7 @@ game.TitleScreen = me.ScreenObject.extend({
         me.audio.stop("theme");
         game.data.newHiScore = false;
 
+        console.log("bg image:", me.loader.getImage('bg'));
         me.game.world.addChild(new game.ScaledBackgroundLayer('bg', 1));
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
