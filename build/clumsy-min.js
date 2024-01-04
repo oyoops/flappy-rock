@@ -394,6 +394,7 @@ var BackgroundLayer = me.ImageLayer.extend({
         this.ground1 = null;
         this.ground2 = null;
         this.logo = null;
+        this.walletButton = null;
     },
 
     onResetEvent: function() {

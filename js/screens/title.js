@@ -5,6 +5,7 @@ game.TitleScreen = me.ScreenObject.extend({
         this.ground1 = null;
         this.ground2 = null;
         this.logo = null;
+        this.walletButton = null;
     },
 
     onResetEvent: function() {
