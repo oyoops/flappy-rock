@@ -16,9 +16,9 @@ var game = {
         {name: "clumsy2", type:"image", src: "data/img/clumsy2.png"}, // gold
         {name: "clumsy3", type:"image", src: "data/img/clumsy3.png"}, // diamond
 
+        //{name: "logo", type:"image", src: "data/img/logo_spritesheet.png"},
         {name: "pipe", type:"image", src: "data/img/pipe.png"},
         {name: "logo", type:"image", src: "data/img/logo.png"},
-        //{name: "logo", type:"image", src: "data/img/logo_spritesheet.png"},
         {name: "ground", type:"image", src: "data/img/ground.png"},
         {name: "gameover", type:"image", src: "data/img/gameover.png"},
         {name: "gameoverbg", type:"image", src: "data/img/gameoverbg.png"},
