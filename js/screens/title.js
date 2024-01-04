@@ -22,11 +22,10 @@ game.TitleScreen = me.ScreenObject.extend({
             }
         });
 
-        logo
         this.logo = new me.Sprite(
-            me.game.viewport.width/2,
-            me.game.viewport.height/2 - 20,
-            {image: 'logo'}
+            me.game.viewport.width / 2 - 158, // adjusted x position
+            me.game.viewport.height / 2 - 100, // adjusted y position
+            { image: 'logo' }
         );
         me.game.world.addChild(this.logo, 10);
 

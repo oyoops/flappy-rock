@@ -30,16 +30,32 @@ var game = {
     ],
 
     "onload": function() {
-        if (!me.video.init(900, 600, {
-            wrapper: "screen",
-            scale : "auto",
-            scaleMethod: "fit"
-        })) {
+        // Get the window dimensions
+        //var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        //var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        this.resizeGame();
+    
+        // Initialize the audio.
+        me.audio.init("mp3,ogg");
+        me.loader.preload(game.resources, this.loaded.bind(this));
+
+        // Listen to resize events and update the game size
+        window.addEventListener('resize', this.resizeGame.bind(this));
+
+    },
+
+    "resizeGame": function() {
+        var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    
+        // Initialize the video.
+        if (!me.video.init(width, height, {wrapper: "screen", scale: "auto", scaleMethod: "fit"})) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
-        me.audio.init("mp3,ogg");
-        me.loader.preload(game.resources, this.loaded.bind(this));
+        
+        // Adjust the game viewport size
+        me.game.viewport.resize(width, height);
     },
 
     "loaded": function() {

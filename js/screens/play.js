@@ -31,7 +31,7 @@ game.PlayScreen = me.ScreenObject.extend({
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD, 11);
 
-        this.bird = me.pool.pull("clumsy", 60, me.game.viewport.height/2 - 100);
+        this.bird = me.pool.pull("clumsy", 60, me.game.viewport.height / 2 - 100);
         me.game.world.addChild(this.bird, 10);
 
         //inputs

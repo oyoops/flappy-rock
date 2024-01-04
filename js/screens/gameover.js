@@ -29,10 +29,11 @@ game.GameOverScreen = me.ScreenObject.extend({
             });
 
         me.game.world.addChild(new me.Sprite(
-            me.game.viewport.width/2,
-            me.game.viewport.height/2 - 100,
-            {image: 'gameover'}
+            me.game.viewport.width / 2 - 170,
+            me.game.viewport.height / 2 - 100,
+            { image: 'gameover' }
         ), 12);
+    
 
         var gameOverBG = new me.Sprite(
             me.game.viewport.width/2,
