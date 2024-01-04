@@ -75,11 +75,14 @@ game.TitleScreen = me.ScreenObject.extend({
                 this.text = me.device.touch ? 'Tap to start' : 'TAP / SPACE TO START \n\t\t\t\t\t\t\t\t\t\t\t"M" TO MUTE SOUND';
                 this.font = new me.Font('gamefont', 20, '#000');
             },
-            draw: function (renderer) {
-                var measure = this.font.measureText(renderer, this.text);
-                var xpos = me.game.viewport.width/2 - measure.width/2;
-                var ypos = me.game.viewport.height/2 + 50;
-                this.font.draw(renderer, this.text, xpos, ypos);
+            draw: function(renderer) {
+                // Draw the scaled background image
+                if (this.bgImage) {
+                    renderer.save();
+                    renderer.scale(this.bgScale, this.bgScale);
+                    renderer.drawImage(this.bgImage, 0, 0);
+                    renderer.restore();
+                }
             }
         })), 12);
     },
