@@ -25,6 +25,7 @@ var game = {
         {name: "hit", type:"image", src: "data/img/hit.png"},
         {name: "getready", type:"image", src: "data/img/getready.png"},
         {name: "new", type:"image", src: "data/img/new.png"},
+        {name: "walletButton", type:"image", src: "data/img/walletButton.png"},
         {name: "share", type:"image", src: "data/img/share.png"},
         {name: "tweet", type:"image", src: "data/img/tweet.png"},
         {name: "fb", type:"image", src: "data/img/share.png"},
@@ -408,15 +409,11 @@ var BackgroundLayer = me.ImageLayer.extend({
         /* SOLANA CONNECTION */
 
         console.log(me.loader.getImage("walletButton")); // Should output the image object
-        this.walletButton = new me.GUI_Object({
-            image: me.loader.getImage("walletButton"),
-            x: me.game.viewport.width / 2 - 50,
-            y: me.game.viewport.height / 2,
-            onClick: function() {
-                connectWallet();
-                return false;
-            }
-        });
+        this.walletButton = new me.Sprite(
+            me.game.viewport.width / 2 - 50, // adjusted x position
+            me.game.viewport.height / 2, // adjusted y position
+            { image: 'walletButton' }
+        );
         me.game.world.addChild(this.walletButton, 10);
 
         // Enter pressed
