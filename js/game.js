@@ -83,3 +83,32 @@ var game = {
         me.state.change(me.state.MENU);
     }
 };
+
+game.ScaledBackgroundLayer = me.ImageLayer.extend({
+    init: function(image, z) {
+        var width = me.video.renderer.getWidth();
+        var height = me.video.renderer.getHeight();
+        // Call the parent constructor
+        this._super(me.ImageLayer, 'init', [0, 0, image, width, height, z]);
+    },
+    
+    update: function() {
+        // Custom update logic if needed
+        return true;
+    },
+    
+    draw: function(renderer) {
+        var originalSize = me.loader.getImage(this.image).height;
+        var scale = me.game.viewport.height / originalSize;
+
+        // Save the current context
+        renderer.save();
+
+        // Scale and draw the background image
+        renderer.scale(scale, scale);
+        this._super(me.ImageLayer, 'draw', [renderer]);
+
+        // Restore the context
+        renderer.restore();
+    }
+});
