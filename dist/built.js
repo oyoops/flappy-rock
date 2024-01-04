@@ -400,7 +400,9 @@ var BackgroundLayer = me.ImageLayer.extend({
         me.audio.stop("theme");
         game.data.newHiScore = false;
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
+        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        me.game.world.addChild(this.bgLayer);
+
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
         me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
@@ -557,8 +559,9 @@ function updateCharacterSprite(imageName) {
         game.data.start = false;
         game.data.newHiscore = false;
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
-
+        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        me.game.world.addChild(this.bgLayer);
+    
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,
             me.game.viewport.height - 96);
@@ -648,8 +651,10 @@ function updateCharacterSprite(imageName) {
         );
         me.game.world.addChild(gameOverBG, 10);
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
-
+        console.log("Preloading check:", me.loader.getImage('bg'));
+        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        me.game.world.addChild(this.bgLayer);
+    
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,

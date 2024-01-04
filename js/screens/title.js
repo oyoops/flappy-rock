@@ -12,8 +12,10 @@ game.TitleScreen = me.ScreenObject.extend({
         me.audio.stop("theme");
         game.data.newHiScore = false;
 
-        console.log("bg image:", me.loader.getImage('bg'));
-        me.game.world.addChild(new game.ScaledBackgroundLayer('bg', 1));
+        console.log("Preloading check:", me.loader.getImage('bg'));
+        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        me.game.world.addChild(this.bgLayer);
+
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
         me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
