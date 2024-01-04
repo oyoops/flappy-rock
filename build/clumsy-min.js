@@ -429,7 +429,7 @@ var BackgroundLayer = me.ImageLayer.extend({
         me.audio.stop("theme");
         game.data.newHiScore = false;
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
+        me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
         me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
@@ -686,7 +686,7 @@ function updateCharacterSprite(imageName) {
         );
         me.game.world.addChild(gameOverBG, 10);
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
+        me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
 
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
