@@ -407,6 +407,7 @@ var BackgroundLayer = me.ImageLayer.extend({
 
         /* SOLANA CONNECTION */
 
+        console.log(me.loader.getImage("walletButton")); // Should output the image object
         this.walletButton = new me.GUI_Object({
             image: me.loader.getImage("walletButton"),
             x: me.game.viewport.width / 2 - 50,
