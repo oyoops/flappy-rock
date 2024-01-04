@@ -13,8 +13,19 @@ game.TitleScreen = me.ScreenObject.extend({
         game.data.newHiScore = false;
 
         console.log("Preloading check:", me.loader.getImage('bg'));
-        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        me.game.world.addChild(this.bgLayer);
+        
+        ///this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        ///me.game.world.addChild(this.bgLayer);
+        // Load the background image directly
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+
+        // Scale the background image to fit the viewport
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
 
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);

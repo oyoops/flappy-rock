@@ -41,11 +41,17 @@ game.GameOverScreen = me.ScreenObject.extend({
             {image: 'gameoverbg'}
         );
         me.game.world.addChild(gameOverBG, 10);
-        console.log("Preloading check:", me.loader.getImage('bg'));
+
+        // Load the background image directly
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+
+        // Scale the background image to fit the viewport
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
         
-        // Add the scaled background layer
-        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        me.game.world.addChild(this.bgLayer);
         
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
