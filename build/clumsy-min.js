@@ -435,7 +435,7 @@ var BackgroundLayer = me.ImageLayer.extend({
         me.audio.stop("theme");
         game.data.newHiScore = false;
 
-        me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
+        me.game.world.addChild(new game.ScaledBackgroundLayer('bg', 1));
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
         me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
@@ -505,42 +505,6 @@ var BackgroundLayer = me.ImageLayer.extend({
         this.logo = null;
     }
 });
-
-game.ScaledBackgroundLayer = me.ImageLayer.extend({
-    init: function(image, z) {
-        var img = me.loader.getImage(image);
-        if (!img) {
-            console.error("Image for ScaledBackgroundLayer not found: " + image);
-            return;
-        }
-    
-        var width = me.video.renderer.getWidth();
-        var height = me.video.renderer.getHeight();
-        // Call the parent constructor
-        this._super(me.ImageLayer, 'init', [0, 0, image, width, height, z]);
-    },
-    
-    update: function() {
-        // Custom update logic if needed
-        return true;
-    },
-    
-    draw: function(renderer) {
-        var originalSize = me.loader.getImage(this.image).height;
-        var scale = me.game.viewport.height / originalSize;
-
-        // Save the current context
-        renderer.save();
-
-        // Scale and draw the background image
-        renderer.scale(scale, scale);
-        this._super(me.ImageLayer, 'draw', [renderer]);
-
-        // Restore the context
-        renderer.restore();
-    }
-});
-
 
 async function connectWallet() {
     try {
@@ -685,41 +649,6 @@ function updateCharacterSprite(imageName) {
     }
 });
 
-game.ScaledBackgroundLayer = me.ImageLayer.extend({
-    init: function(image, z) {
-        var img = me.loader.getImage(image);
-        if (!img) {
-            console.error("Image for ScaledBackgroundLayer not found: " + image);
-            return;
-        }
-    
-        var width = me.video.renderer.getWidth();
-        var height = me.video.renderer.getHeight();
-        // Call the parent constructor
-        this._super(me.ImageLayer, 'init', [0, 0, image, width, height, z]);
-    },
-    
-    update: function() {
-        // Custom update logic if needed
-        return true;
-    },
-    
-    draw: function(renderer) {
-        var originalSize = me.loader.getImage(this.image).height;
-        var scale = me.game.viewport.height / originalSize;
-
-        // Save the current context
-        renderer.save();
-
-        // Scale and draw the background image
-        renderer.scale(scale, scale);
-        this._super(me.ImageLayer, 'draw', [renderer]);
-
-        // Restore the context
-        renderer.restore();
-    }
-});
-
 ;game.GameOverScreen = me.ScreenObject.extend({
     init: function() {
         this.savedData = null;
@@ -764,7 +693,7 @@ game.ScaledBackgroundLayer = me.ImageLayer.extend({
         );
         me.game.world.addChild(gameOverBG, 10);
 
-        me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
+        me.game.world.addChild(new game.ScaledBackgroundLayer('bg', 1));
 
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
@@ -832,37 +761,3 @@ game.ScaledBackgroundLayer = me.ImageLayer.extend({
     }
 });
 
-game.ScaledBackgroundLayer = me.ImageLayer.extend({
-    init: function(image, z) {
-        var img = me.loader.getImage(image);
-        if (!img) {
-            console.error("Image for ScaledBackgroundLayer not found: " + image);
-            return;
-        }
-    
-        var width = me.video.renderer.getWidth();
-        var height = me.video.renderer.getHeight();
-        // Call the parent constructor
-        this._super(me.ImageLayer, 'init', [0, 0, image, width, height, z]);
-    },
-    
-    update: function() {
-        // Custom update logic if needed
-        return true;
-    },
-    
-    draw: function(renderer) {
-        var originalSize = me.loader.getImage(this.image).height;
-        var scale = me.game.viewport.height / originalSize;
-
-        // Save the current context
-        renderer.save();
-
-        // Scale and draw the background image
-        renderer.scale(scale, scale);
-        this._super(me.ImageLayer, 'draw', [renderer]);
-
-        // Restore the context
-        renderer.restore();
-    }
-});
