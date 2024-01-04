@@ -11,10 +11,13 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        uglify: {
+        terser: {
             options: {
-                report: 'min',
-                preserveComments: 'some'
+                compress: true,
+                mangle: true,
+                output: {
+                    comments: false, // Use "/^!/" to preserve comments starting with "!"
+                }
             },
             dist: {
                 files: {
@@ -59,13 +62,13 @@ module.exports = function(grunt) {
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-terser');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-contrib-connect");
 
 
     // Default task.
-    grunt.registerTask('default', ['uglify']);
+    grunt.registerTask('default', ['terser']);
     grunt.registerTask('lint', ['jshint:beforeConcat', 'concat', 'jshint:afterConcat']);
 };
