@@ -20,15 +20,11 @@ game.TitleScreen = me.ScreenObject.extend({
         /* SOLANA CONNECTION */
 
         console.log(me.loader.getImage("walletButton")); // Should output the image object
-        this.walletButton = new me.GUI_Object({
-            image: me.loader.getImage("walletButton"),
-            x: me.game.viewport.width / 2 - 50,
-            y: me.game.viewport.height / 2,
-            onClick: function() {
-                connectWallet();
-                return false;
-            }
-        });
+        this.walletButton = new me.Sprite(
+            me.game.viewport.width / 2 - 50, // adjusted x position
+            me.game.viewport.height / 2, // adjusted y position
+            { image: 'walletButton' }
+        );
         me.game.world.addChild(this.walletButton, 10);
 
         // Enter pressed
