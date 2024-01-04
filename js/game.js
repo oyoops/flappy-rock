@@ -10,7 +10,12 @@ var game = {
     resources: [
         // images
         {name: "bg", type:"image", src: "data/img/bg.png"},
-        {name: "clumsy", type:"image", src: "data/img/clumsy.png"},
+        
+        {name: "clumsy", type:"image", src: "data/img/clumsy.png"}, // default
+        {name: "clumsy1", type:"image", src: "data/img/clumsy1.png"}, // stone
+        {name: "clumsy2", type:"image", src: "data/img/clumsy2.png"}, // gold
+        {name: "clumsy3", type:"image", src: "data/img/clumsy3.png"}, // diamond
+
         {name: "pipe", type:"image", src: "data/img/pipe.png"},
         {name: "logo", type:"image", src: "data/img/logo.png"},
         //{name: "logo", type:"image", src: "data/img/logo_spritesheet.png"},
@@ -20,6 +25,7 @@ var game = {
         {name: "hit", type:"image", src: "data/img/hit.png"},
         {name: "getready", type:"image", src: "data/img/getready.png"},
         {name: "new", type:"image", src: "data/img/new.png"},
+        {name: "walletButton", type:"image", src: "data/img/walletButton.png"},
         {name: "share", type:"image", src: "data/img/share.png"},
         {name: "tweet", type:"image", src: "data/img/tweet.png"},
         // sounds
@@ -53,7 +59,7 @@ var game = {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
-        
+
         // Adjust the game viewport size
         me.game.viewport.resize(width, height);
     },

@@ -16,6 +16,20 @@ game.TitleScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
         me.input.bindPointer(me.input.pointer.LEFT, me.input.KEY.ENTER);
 
+        /* SOLANA CONNECTION */
+
+        this.walletButton = new me.GUI_Object({
+            image: me.loader.getImage("walletButton"),
+            x: me.game.viewport.width / 2 - 50,
+            y: me.game.viewport.height / 2,
+            onClick: function() {
+                connectWallet();
+                return false;
+            }
+        });
+        me.game.world.addChild(this.walletButton, 10);
+
+        // Enter pressed
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
             if (action === "enter") {
                 me.state.change(me.state.PLAY);
@@ -70,3 +84,62 @@ game.TitleScreen = me.ScreenObject.extend({
         this.logo = null;
     }
 });
+
+
+async function connectWallet() {
+    try {
+        // Use solana-web3.js to connect to the wallet
+        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+        const wallet = await solanaWeb3.connect();
+        const balance = await getRockWifHatTokenBalance(wallet, connection);
+
+        // Based on balance, set the game character
+        setGameCharacter(balance);
+    } catch (err) {
+        console.error("Wallet connection failed:", err);
+    }
+}
+
+async function getRockWifHatTokenBalance(wallet, connection) {
+    // read RockWifHat balance from wallet
+    const tokenBalance = await connection.getTokenAccountBalance(wallet.publicKey, '7T2ea9r19X8aZokV15ii5fstumyhyBuLAnrNFhMkxPj4');
+    return tokenBalance.value.uiAmount;
+}
+
+
+function setGameCharacter(balance) {
+        // set character based on tkn bal
+        const DIAMOND_THRESHOLD = 10000000;
+        const GOLD_THRESHOLD = 1000000;
+        const STONE_THRESHOLD = 0;
+
+    if (balance >= DIAMOND_THRESHOLD) {
+        // diamond
+        game.data.characterImage = 'diamondFlappyRock';
+    } else if (balance >= GOLD_THRESHOLD) {
+        // gold
+        game.data.characterImage = 'goldFlappyRock';
+    } else {
+        // stone grey
+        game.data.characterImage = 'stoneGreyFlappyRock';
+    }
+    // update in-game sprite
+    updateCharacterSprite(game.data.characterImage);
+}
+
+function updateCharacterSprite(imageName) {
+    // Map imageName to actual image file
+    let imageMap = {
+        'stoneGreyFlappyRock': 'clumsy1',
+        'goldFlappyRock': 'clumsy2',
+        'diamondFlappyRock': 'clumsy3'
+    };
+
+    let actualImage = imageMap[imageName] || 'clumsy1';
+    let birdEntity = me.game.world.getChildByName("clumsy")[0];
+
+    if (birdEntity) {
+        birdEntity.image = me.loader.getImage(actualImage);
+        // You might need to re-add or refresh the entity in the game world
+    }
+}
