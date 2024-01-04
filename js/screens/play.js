@@ -20,8 +20,7 @@ game.PlayScreen = me.ScreenObject.extend({
         game.data.start = false;
         game.data.newHiscore = false;
 
-        //me.game.world.addChild(new BackgroundLayer('bg', 1));
-        // Replace this line with the ScaledBackgroundLayer
+        ////me.game.world.addChild(new BackgroundLayer('bg', 1));
         this.bgLayer = new game.ScaledBackgroundLayer("bg", 1);
         me.game.world.addChild(this.bgLayer);
 
