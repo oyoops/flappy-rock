@@ -21,6 +21,14 @@ game.PlayScreen = me.ScreenObject.extend({
         game.data.start = false;
         game.data.newHiscore = false;
 
+        // Load and scale the background image
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,
             me.game.viewport.height - 96);
