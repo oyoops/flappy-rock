@@ -425,8 +425,19 @@ var BackgroundLayer = me.ImageLayer.extend({
         game.data.newHiScore = false;
 
         console.log("Preloading check:", me.loader.getImage('bg'));
-        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        me.game.world.addChild(this.bgLayer);
+        
+        ///this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        ///me.game.world.addChild(this.bgLayer);
+        // Load the background image directly
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+
+        // Scale the background image to fit the viewport
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
 
         me.input.bindKey(me.input.KEY.ENTER, "enter", true);
         me.input.bindKey(me.input.KEY.SPACE, "enter", true);
@@ -572,14 +583,6 @@ function updateCharacterSprite(imageName) {
     onResetEvent: function() {
         me.game.reset();
 
-        // Check if the image is loaded correctly
-        if (me.loader.getImage("bg")) {
-            this.bgLayer = new game.ScaledBackgroundLayer("bg", 1);
-            me.game.world.addChild(this.bgLayer);
-        } else {
-            console.error("Background image not found!");
-        }
-
         me.audio.stop("theme");
         if (!game.data.muted){
             me.audio.play("theme", true);
@@ -593,8 +596,18 @@ function updateCharacterSprite(imageName) {
 
         ////////me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
         ////this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        me.game.world.addChild(this.bgLayer);    
+
+        ///this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
+        ///me.game.world.addChild(this.bgLayer);
+        // Load the background image directly
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+        // Scale the background image to fit the viewport
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
 
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,
@@ -683,11 +696,17 @@ function updateCharacterSprite(imageName) {
             {image: 'gameoverbg'}
         );
         me.game.world.addChild(gameOverBG, 10);
-        console.log("Preloading check:", me.loader.getImage('bg'));
+
+        // Load the background image directly
+        this.bgImage = me.loader.getImage('bg');
+        if (!this.bgImage) {
+            console.error("Background image not found");
+            return;
+        }
+
+        // Scale the background image to fit the viewport
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
         
-        // Add the scaled background layer
-        this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        me.game.world.addChild(this.bgLayer);
         
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
