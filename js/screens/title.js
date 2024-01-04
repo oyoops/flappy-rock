@@ -145,3 +145,4 @@ function updateCharacterSprite(imageName) {
     // Add the new bird entity to the game world
     me.game.world.addChild(game.PlayScreen.bird, 10);
 }
+

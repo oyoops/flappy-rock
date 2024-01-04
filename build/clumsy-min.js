@@ -567,7 +567,9 @@ function updateCharacterSprite(imageName) {
 
     // Add the new bird entity to the game world
     me.game.world.addChild(game.PlayScreen.bird, 10);
-};game.PlayScreen = me.ScreenObject.extend({
+}
+
+;game.PlayScreen = me.ScreenObject.extend({
     init: function() {
         me.audio.play("theme", true);
         // lower audio volume on firefox browser
