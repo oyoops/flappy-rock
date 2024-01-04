@@ -42,12 +42,14 @@ game.GameOverScreen = me.ScreenObject.extend({
         );
         me.game.world.addChild(gameOverBG, 10);
 
-        // Load the background image directly
+        // Load and scale the background image
         this.bgImage = me.loader.getImage('bg');
         if (!this.bgImage) {
             console.error("Background image not found");
             return;
         }
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
 
         // Scale the background image to fit the viewport
         this.bgScale = me.game.viewport.height / this.bgImage.height;
@@ -81,7 +83,18 @@ game.GameOverScreen = me.ScreenObject.extend({
                 this.topSteps= 'High Score: ' + me.save.topSteps.toString();
             },
 
-            draw: function (renderer) {
+            draw: function(renderer) {
+                // Draw the scaled background image
+                if (this.bgImage) {
+                    renderer.save();
+                    renderer.scale(this.bgScale, this.bgScale);
+                    renderer.drawImage(this.bgImage, 0, 0);
+                    renderer.restore();
+                }
+        
+                // Draw other elements
+                this._super(me.ScreenObject, 'draw', [renderer]);        
+                
                 var stepsText = this.font.measureText(renderer, this.steps);
                 var topStepsText = this.font.measureText(renderer, this.topSteps);
                 var scoreText = this.font.measureText(renderer, this.score);

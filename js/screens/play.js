@@ -21,21 +21,6 @@ game.PlayScreen = me.ScreenObject.extend({
         game.data.start = false;
         game.data.newHiscore = false;
 
-        ////////me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
-        ////this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-
-        ///this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        ///me.game.world.addChild(this.bgLayer);
-        // Load the background image directly
-        this.bgImage = me.loader.getImage('bg');
-        if (!this.bgImage) {
-            console.error("Background image not found");
-            return;
-        }
-        // Scale the background image to fit the viewport
-        this.bgScale = me.game.viewport.height / this.bgImage.height;
-
-
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,
             me.game.viewport.height - 96);
@@ -67,6 +52,19 @@ game.PlayScreen = me.ScreenObject.extend({
                 me.game.world.removeChild(that.getReady);
             }).start();
     },
+
+    draw: function(renderer) {
+        // Draw the scaled background image
+        if (this.bgImage) {
+            renderer.save();
+            renderer.scale(this.bgScale, this.bgScale);
+            renderer.drawImage(this.bgImage, 0, 0);
+            renderer.restore();
+        }
+
+        // Draw other elements
+        this._super(me.ScreenObject, 'draw', [renderer]);
+    }, 
 
     onDestroyEvent: function() {
         me.audio.stopTrack('theme');

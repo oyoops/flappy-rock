@@ -487,11 +487,14 @@ var BackgroundLayer = me.ImageLayer.extend({
                 this.text = me.device.touch ? 'Tap to start' : 'TAP / SPACE TO START \n\t\t\t\t\t\t\t\t\t\t\t"M" TO MUTE SOUND';
                 this.font = new me.Font('gamefont', 20, '#000');
             },
-            draw: function (renderer) {
-                var measure = this.font.measureText(renderer, this.text);
-                var xpos = me.game.viewport.width/2 - measure.width/2;
-                var ypos = me.game.viewport.height/2 + 50;
-                this.font.draw(renderer, this.text, xpos, ypos);
+            draw: function(renderer) {
+                // Draw the scaled background image
+                if (this.bgImage) {
+                    renderer.save();
+                    renderer.scale(this.bgScale, this.bgScale);
+                    renderer.drawImage(this.bgImage, 0, 0);
+                    renderer.restore();
+                }
             }
         })), 12);
     },
@@ -594,21 +597,6 @@ function updateCharacterSprite(imageName) {
         game.data.start = false;
         game.data.newHiscore = false;
 
-        ////////me.game.world.addChild(new ScaledBackgroundLayer('bg', 1));
-        ////this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-
-        ///this.bgLayer = new game.ScaledBackgroundLayer('bg', 1);
-        ///me.game.world.addChild(this.bgLayer);
-        // Load the background image directly
-        this.bgImage = me.loader.getImage('bg');
-        if (!this.bgImage) {
-            console.error("Background image not found");
-            return;
-        }
-        // Scale the background image to fit the viewport
-        this.bgScale = me.game.viewport.height / this.bgImage.height;
-
-
         this.ground1 = me.pool.pull('ground', 0, me.game.viewport.height - 96);
         this.ground2 = me.pool.pull('ground', me.game.viewport.width,
             me.game.viewport.height - 96);
@@ -640,6 +628,19 @@ function updateCharacterSprite(imageName) {
                 me.game.world.removeChild(that.getReady);
             }).start();
     },
+
+    draw: function(renderer) {
+        // Draw the scaled background image
+        if (this.bgImage) {
+            renderer.save();
+            renderer.scale(this.bgScale, this.bgScale);
+            renderer.drawImage(this.bgImage, 0, 0);
+            renderer.restore();
+        }
+
+        // Draw other elements
+        this._super(me.ScreenObject, 'draw', [renderer]);
+    }, 
 
     onDestroyEvent: function() {
         me.audio.stopTrack('theme');
@@ -697,12 +698,14 @@ function updateCharacterSprite(imageName) {
         );
         me.game.world.addChild(gameOverBG, 10);
 
-        // Load the background image directly
+        // Load and scale the background image
         this.bgImage = me.loader.getImage('bg');
         if (!this.bgImage) {
             console.error("Background image not found");
             return;
         }
+        this.bgScale = me.game.viewport.height / this.bgImage.height;
+
 
         // Scale the background image to fit the viewport
         this.bgScale = me.game.viewport.height / this.bgImage.height;
@@ -736,7 +739,18 @@ function updateCharacterSprite(imageName) {
                 this.topSteps= 'High Score: ' + me.save.topSteps.toString();
             },
 
-            draw: function (renderer) {
+            draw: function(renderer) {
+                // Draw the scaled background image
+                if (this.bgImage) {
+                    renderer.save();
+                    renderer.scale(this.bgScale, this.bgScale);
+                    renderer.drawImage(this.bgImage, 0, 0);
+                    renderer.restore();
+                }
+        
+                // Draw other elements
+                this._super(me.ScreenObject, 'draw', [renderer]);        
+                
                 var stepsText = this.font.measureText(renderer, this.steps);
                 var topStepsText = this.font.measureText(renderer, this.topSteps);
                 var scoreText = this.font.measureText(renderer, this.score);
