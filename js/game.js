@@ -10,13 +10,10 @@ var game = {
     resources: [
         // images
         {name: "bg", type:"image", src: "data/img/bg.png"},
-        
         {name: "clumsy", type:"image", src: "data/img/clumsy.png"}, // default
         {name: "clumsy1", type:"image", src: "data/img/clumsy1.png"}, // stone
         {name: "clumsy2", type:"image", src: "data/img/clumsy2.png"}, // gold
         {name: "clumsy3", type:"image", src: "data/img/clumsy3.png"}, // diamond
-
-        //{name: "logo", type:"image", src: "data/img/logo_spritesheet.png"},
         {name: "pipe", type:"image", src: "data/img/pipe.png"},
         {name: "logo", type:"image", src: "data/img/logo.png"},
         {name: "ground", type:"image", src: "data/img/ground.png"},
