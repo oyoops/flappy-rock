@@ -60,6 +60,16 @@ module.exports = function(grunt) {
             ],
         },
 
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: sourceFiles,
+                dest: 'build/clumsy-min.js',
+            },
+        },
+
     });
 
     grunt.loadNpmTasks('grunt-terser');
@@ -67,8 +77,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-contrib-connect");
 
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
 
     // Default task.
-    grunt.registerTask('default', ['terser']);
+    //grunt.registerTask('default', ['terser']);
+    grunt.registerTask('default', ['concat']);
     grunt.registerTask('lint', ['jshint:beforeConcat', 'concat', 'jshint:afterConcat']);
 };
