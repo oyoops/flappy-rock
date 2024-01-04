@@ -25,7 +25,7 @@ var game = {
         {name: "hit", type:"image", src: "data/img/hit.png"},
         {name: "getready", type:"image", src: "data/img/getready.png"},
         {name: "new", type:"image", src: "data/img/new.png"},
-        {name: "walletButton", type:"image", src: "data/img/walletButton.png"},
+        {name: "walletbutton", type:"image", src: "data/img/walletButton.png"},
         {name: "share", type:"image", src: "data/img/share.png"},
         {name: "tweet", type:"image", src: "data/img/tweet.png"},
         {name: "fb", type:"image", src: "data/img/share.png"},
