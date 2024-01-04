@@ -130,16 +130,20 @@ function setGameCharacter(balance) {
 function updateCharacterSprite(imageName) {
     // Map imageName to actual image file
     let imageMap = {
-        'stoneGreyFlappyRock': 'clumsy1',
-        'goldFlappyRock': 'clumsy2',
-        'diamondFlappyRock': 'clumsy3'
+        'stoneGreyFlappyRock': 'clumsy1.png',
+        'goldFlappyRock': 'clumsy2.png',
+        'diamondFlappyRock': 'clumsy3.png'
     };
 
-    let actualImage = imageMap[imageName] || 'clumsy1';
-    let birdEntity = me.game.world.getChildByName("clumsy")[0];
+    let actualImage = imageMap[imageName] || 'clumsy1.png'; // Default to stone if not found
 
-    if (birdEntity) {
-        birdEntity.image = me.loader.getImage(actualImage);
-        // You might need to re-add or refresh the entity in the game world
-    }
+    // Remove the current bird entity from the game world
+    me.game.world.removeChild(game.PlayScreen.bird);
+
+    // Create a new bird entity with the updated sprite
+    game.PlayScreen.bird = me.pool.pull("clumsy", 60, me.game.viewport.height / 2 - 100);
+    game.PlayScreen.bird.image = me.loader.getImage(actualImage);
+
+    // Add the new bird entity to the game world
+    me.game.world.addChild(game.PlayScreen.bird, 10);
 }
